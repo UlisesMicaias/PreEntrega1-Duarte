@@ -1,80 +1,151 @@
-//VOY A HACER UNA FUNCIÓN QUE PIDA LOS DATOS Y SUS GUSTOS
+//CAFETERÍA DE BUENOS AIRES
+let nombre = prompt('Hola bienvenido! Nosotros somos BITTER COFFE.' + '\nIngrese sólo y únicamente su nombre para registrarse(debe tener entre 3 a 10 caracteres):').toLowerCase().trim();
+let apellido = prompt('Ahora ingrese sólo y únicamente su apellido(debe tener entre 3 a 10 caracteres):').toLowerCase().trim();
 
-alert("BIENEVENIDO A LA INMOBILIARIA MÁS GRANDE DE BUENOS AIRES");
-
-let nombre = prompt("Bienvenido, quisieramos saber su nombre. Ingrese sólo su nombre.").toLowerCase();
-let apellido = prompt("Ingrese su apellido.").toLowerCase();
-let casaRecomendada;
-
-
-function saludar(nombre, apellido) {
-    // hacemos un saludo personalizado con los datos ingresados a través de nombre y apellido
-    alert("Hola " + nombre + " " + apellido + " Te agradecemos que nos hayas elegido como tu inmobiliaria!");
-    return nombre;// guarda el valor del nombre y lo retorna
-};
-function recomendacionPrecios(precio) {
-    if (precio >= 0 &&  precio <= 100000) {
-        casaRecomendada = parseInt(prompt("TENEMOS ESTÁS OPCIONES, ELIGE LA QUE TE INTERESE: \n1: ALQUILER EN RECOLETA DE 3 AMBIENTES \n2:CASA DE 5 HABITACIONES EN RECOLETA \n3: ALQUILER EN AVELLANEDA DE 5 AMBIENTES \n\nINGRESE 0 PARA SALIR"));
-        // ingresa al bucle si es distinto de 0 y ejecuta un switch con diferentes opciones
-        while (casaRecomendada !== 0 ) {
-            switch (casaRecomendada) {
-                // en caso de que sea 0 nos saldremos del loop
-                case 0:
-                    alert("GRACIAS POR SU VISITA!!!");
-                    break;
-                case 1:
-                    alert("ALQUILER EN RECOLETA DE 3 AMBIENTES($80.700, ubicado en el centro ideal para una pareja)");
-                    break;
-                case 2:
-                    alert("CASA DE 5 HABITACIONES EN RECOLETA($100000, alejado del centro, lugar tranquilo e ideal para una familia)");
-                    break;
-                case 3:
-                    alert("ALQUILER EN AVELLANEDA DE 5 AMBIENTES($50000, cerca del shopping, lugar transitado sobre la avenida)");
-                default:
-                    alert("OPCIÓN INVÁLIDA");
-                    break;
-            };
-            // verificamos si quiere seguir, si desea seguir va a ingresa nuevamente al loop hasta que se cumpla que es distinto de 0
-            casaRecomendada = prompt("¿Desea ver otras opciones? Si o No").toLowerCase();
-            if (casaRecomendada === "no") {
-                alert("¡Gracias por su visita!");
-                break;
-            }else {
-                casaRecomendada = parseInt(prompt("TENEMOS ESTAS OPCIONES, ELIGE LA QUE TE INTERESE: \n1: ALQUILER EN RECOLETA DE 3 AMBIENTES \n2: CASA DE 5 HABITACIONES EN RECOLETA \n3: ALQUILER EN AVELLANEDA DE 5 AMBIENTES \n\nINGRESE 0 PARA SALIR"));
-            };
-        };
-    } else if( precio >=100001 && precio <= 200000){
-        casaRecomendada = parseInt(prompt("TENEMOS ESTÁS OPCIONES, ELIGE LA QUE TE INTERESE: \n1:CASA EN PILAR DE 2 PISOS Y 6 AMBIENTES \n2:CASA EN NORDELTA DE 5 AMBIENTES(BARRIO PRIVADO) \n3:ALQUILER EN PUERTO MADERO DE 5 AMBIENTES \n\nINGRESE 0 PARA SALIR"));
-        while (casaRecomendada !== 0) {
-            switch (casaRecomendada) {
-                case 0:
-                    alert("GRACIAS POR SU VISITA!!!");
-                    break;
-                case 1:
-                    alert("ALQUILER EN RECOLETA DE 3 AMBIENTES($80.700, ubicado en el centro ideal para una pareja)");
-                    break;
-                case 2:
-                    alert("CASA DE 5 HABITACIONES EN RECOLETA($100000, alejado del centro, lugar tranquilo e ideal para una familia)");
-                    break;
-                case 3:
-                    alert("ALQUILER EN AVELLANEDA DE 5 AMBIENTES($50000, cerca del shopping, lugar transitado sobre la avenida)");
-                default:
-                    alert("OPCIÓN INVÁLIDA");
-                    break;
-            };
-            casaRecomendada = prompt("¿Desea ver otras opciones? Si o No").toLowerCase();
-            if (casaRecomendada === "no") {
-                alert("¡Gracias por su visita!");
-                break;// rompe el loop y sale
-            }else {
-                // seguimos preguntando hasta que salga o diga que no
-                casaRecomendada = parseInt(prompt("TENEMOS ESTAS OPCIONES, ELIGE LA QUE TE INTERESE: \n1: ALQUILER EN RECOLETA DE 3 AMBIENTES \n2: CASA DE 5 HABITACIONES EN RECOLETA \n3: ALQUILER EN AVELLANEDA DE 5 AMBIENTES \n\nINGRESE 0 PARA SALIR"));
-            };
-        };
+//función constructora de usuarios
+class Usuario {
+    constructor(nombre,apellido, fecha){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fecha = fecha;
     };
 };
 
+let usuario;
 
-let capacidad = parseInt(prompt(saludar(nombre, apellido) + "\nQuisieramos saber el rango de precio en el cual estás buscando: \nmáximo a ingresar es hasta 200000"));
+//verifica que las condiciones que imponemos se cumplan(que los nombres y apellidos tengan entre 3 a 15 caracteres)
+function verificador(nombre,apellido) {
+    //recuento de caracteres para ver si coinciden con nuestras condiciones
+    while(nombre.length > 15 || nombre.length < 3) {
+        alert('Has ingresado una cantidad de caracteres mayor o menor a lo permitido');
+        nombre = prompt('Ingrese sólo y únicamente su nombre para registrarse(debe tener entre 3 a 15 caracteres): ').toLowerCase().trim();
+        console.log('entraste al if de nombre: ' + nombre);
+    }
+    while(apellido.length > 15 || apellido.length < 3){
+        alert('Has ingresado una cantidad de caracteres mayor o menor a lo permitido');
+        apellido = prompt('Ingrese sólo y únicamente su apellido(debe tener entre 3 a 15 caracteres): ').toLowerCase().trim();
+        console.log('entraste a la variable if de apellido: '+ apellido);
+    };
+    alert('Se ha registrado exitosamente!');
+    const fechaRegistro = new Date();
+    usuario = new Usuario(nombre,apellido, fechaRegistro);
+    //retornamos a usuario 
+    return usuario;
+};
 
-recomendacionPrecios(capacidad);
+function bienvenida(nombre, apellido) {
+    alert(`Binevenido/a ${nombre} ${apellido}!`);
+};
+
+// variable que guarda el registro de usuario
+const registrado = verificador(nombre, apellido);
+console.log(registrado);
+
+bienvenida(registrado.nombre,registrado.apellido);
+
+
+const cafes = [
+    {
+        tipo:'espresso',
+        precio: 1800,
+        tamaño: 'pequeño',
+        ingredientes:'café negro granulado'
+    },
+    {
+        tipo:'macchiato',
+        precio: 2300,
+        tamaño: 'mediano',
+        ingredientes:'café negro granulado cortado con leche'
+    },
+    {
+        tipo:'mocca',
+        precio: 2800,
+        tamaño: 'grande',
+        ingredientes:'café negro con chocolate en el fondo, cortado con leche y espuma de leche'
+    },
+    {
+        tipo:'latte',
+        precio: 2500,
+        tamaño: 'mediano',
+        ingredientes:'café negro granulado cortado con leche y espuma de leche'
+    },
+    {
+        tipo:'cappuccino',
+        precio: 2300,
+        tamaño: 'mediano',
+        ingredientes:'café negro granulado cortado mitad leche y espuma de leche'
+    },
+    {
+        tipo:'bombón',
+        precio: 2500,
+        tamaño: 'mediano',
+        ingredientes:'leche condensada y café negro arriba'
+    },
+    {
+        tipo:'macchiato',
+        precio: 2300,
+        tamaño: 'pequeño',
+        ingredientes:'café negro granulado cortado con leche'
+    },
+    {
+        tipo:'irish',
+        precio: 2300,
+        tamaño: 'grande',
+        ingredientes:'café negro granulado cortado con whiskey y espuma de leche'
+    },
+    {
+        tipo:'azteca',
+        precio: 3000,
+        tamaño: 'grande',
+        ingredientes:'café negro granulado cortado con leche y una bocha de helado de chocolate arriba'
+    },
+];
+//array de las compras totales del usuario
+let compra = [];
+//vamos a usar la variable confirmacion para validar que el usuario quiera realizar un movimiento o no
+let confirmacion = confirm(`Nuestra cafetería se caracteriza por su variedad en cafés de todo el mundo! \n ¿Desea ver nuestro menú?`);
+let cafeComprado;
+//función que recorre todos los elementos del array y los devuelve
+function menu(productos) {
+    productos.forEach(productos =>{
+        alert(`${productos.tipo} \nprecio: $${productos.precio} \ntamaño: ${productos.tamaño} \ningredientes: ${productos.ingredientes}`);
+    });
+};
+
+//funcion para mostrar todos los productos que se han comprado
+function compraTotal(productos) {
+    productos.forEach(productos =>{
+        alert(`Compra total: \n${productos.tipo}  $${productos.precio}`);
+    });
+};
+
+//funcion que busca los productos a comprar
+function busquedaDeProducto(nombre) {
+    cafeComprado = cafes.find(el => el.tipo === nombre);
+    while (cafeComprado === undefined) {
+        alert('Error! este producto no existe o está mal escrito');
+        nombre = prompt('Ingrese el nombre del café que quiera comprar: ').toLowerCase().trim();
+        cafeComprado = cafes.find(el => el.tipo === nombre);
+    }
+    compra.push(cafeComprado);
+};
+
+if (confirmacion) {
+    menu(cafes);
+};
+
+confirmacion = confirm('Desea comprar algo?');
+//tiene el valor de todo lo que se pusheo para comprar
+function listaDeCompraToTal() {
+    while(confirmacion) {
+        let cafeEncontrado = prompt('Ingrese el nombre del café que quiera comprar: ').toLowerCase().trim();
+        busquedaDeProducto(cafeEncontrado);
+        confirmacion = confirm('¿Quiere comprar más?');
+    };
+    return compra;
+};
+if (confirmacion) {
+    compraTotal(listaDeCompraToTal());
+} else {
+    alert('Ha decidido no comprar nada. Gracias por su visita!');
+};
